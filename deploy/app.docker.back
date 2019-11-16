@@ -1,0 +1,14 @@
+FROM php:7.3-fpm
+
+# Copy composer.lock and composer.json
+COPY composer.lock composer.json /var/www/
+
+RUN apt-get update && apt-get install -y \    
+    libmcrypt-dev mariadb-client \
+    && docker-php-ext-install bcmath calendar ctype curl dba dom enchant exif fileinfo \ 
+    filter ftp gd gettext gmp hash iconv imap interbase intl json ldap mbstring mysqli oci8 \
+    odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql \ 
+    pdo_sqlite pgsql phar posix pspell readline recode reflection session shmop simplexml \ 
+    sockets spl standard tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zend_test zip
+
+WORKDIR /var/www
