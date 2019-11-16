@@ -81,6 +81,15 @@ COPY php/config/php7.ini /usr/local/etc/php/conf.d/
 #        && make install \
 #        && make test
 # COPY config/mongodb.ini /usr/local/etc/php/conf.d/
+
+RUN apk update
+RUN apk add bash
+RUN apk add curl
+
+# INSTALL COMPOSER
+RUN curl -s https://getcomposer.org/installer | php
+RUN alias composer='php composer.phar'
+
 ENV PHP_REDIS_VERSION 5.0.2
 RUN git clone --branch ${PHP_REDIS_VERSION} https://github.com/phpredis/phpredis /tmp/phpredis \
         && cd /tmp/phpredis \
@@ -119,3 +128,4 @@ COPY php/config/fpm/php-fpm.conf /usr/local/etc/
 COPY php/config/fpm/pool.d /usr/local/etc/pool.d
 VOLUME ["/var/www"]
 WORKDIR /var/www
+
