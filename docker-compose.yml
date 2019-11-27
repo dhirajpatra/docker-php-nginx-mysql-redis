@@ -31,6 +31,8 @@ services:
             - "MYSQL_DATABASE=myapp"
         ports:
             - "33061:3306"
+        volumes:
+            - ./mysql-dump:/docker-entrypoint-initdb.d
     cache:
         image: redis:3.0
         ports:
