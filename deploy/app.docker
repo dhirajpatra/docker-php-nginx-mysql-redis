@@ -29,7 +29,7 @@ icu-libs \
 # for mongodb
 # libssl1.1 \
 # for postgres
-postgresql-dev \
+#postgresql-dev \
 # for soap
 libxml2-dev \
 # for amqp
@@ -54,7 +54,7 @@ $PHPIZE_DEPS \
 && docker-php-ext-configure pcntl --enable-pcntl \
 && docker-php-ext-configure mysqli --with-mysqli \
 && docker-php-ext-configure pdo_mysql --with-pdo-mysql \
-&& docker-php-ext-configure pdo_pgsql --with-pgsql \
+#&& docker-php-ext-configure pdo_pgsql --with-pgsql \
 && docker-php-ext-configure mbstring --enable-mbstring \
 && docker-php-ext-configure soap --enable-soap \
 && docker-php-ext-install -j$(nproc) \
@@ -64,7 +64,7 @@ intl \
 pcntl \
 mysqli \
 pdo_mysql \
-pdo_pgsql \
+#pdo_pgsql \
 mbstring \
 soap \
 iconv \
@@ -131,4 +131,3 @@ COPY php/config/fpm/php-fpm.conf /usr/local/etc/
 COPY php/config/fpm/pool.d /usr/local/etc/pool.d
 VOLUME ["/var/www"]
 WORKDIR /var/www
-
